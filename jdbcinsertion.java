@@ -1,4 +1,4 @@
-
+//jdbc connection with insertion and updation query
 package pack2;
 
 import java.sql.*;
@@ -22,8 +22,7 @@ System.out.println("connetion Established");
           Statement stm1=con.createStatement();//creating the statement
 
    // int row =stm1.executeUpdate( "insert into student values(106,'abhi','mca')");//executing the query
-   //int  row =stm1.executeUpdate( "insert into student values(108,'abhilasha','mca')");//executing the query
-    //int row =stm1.executeUpdate( "insert into student values(109,'abhi','mca')");
+ 
     String sql=("UPDATE student "+
             "SET name= 'shivala' where rollno  in(106)");
    
