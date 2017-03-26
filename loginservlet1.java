@@ -1,4 +1,4 @@
-
+//loginverfication from database using servlet.
 package pak1;
 
 import java.io.IOException;
