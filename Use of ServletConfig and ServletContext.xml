@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>username</param-name>
+        <param-value> shivani</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>servletcontx</servlet-name>
+        <servlet-class>pack1.servletcontx</servlet-class>
+        <init-param>
+            <param-name> cat </param-name>
+            <param-value>120</param-value>
+        </init-param>
+        <init-param>
+            <param-name> dog</param-name>
+            <param-value>450</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>logincontx</servlet-name>
+        <servlet-class>pack1.logincontx</servlet-class>
+        <init-param>
+            <param-name> shirt</param-name>
+            <param-value>4000</param-value>
+        </init-param>
+        <init-param>
+            <param-name> oil</param-name>
+            <param-value>3000</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>logcontex</servlet-name>
+        <servlet-class>pak1.logcontex</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servletcontx</servlet-name>
+        <url-pattern>/servletcontx</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logincontx</servlet-name>
+        <url-pattern>/logincontx</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logcontex</servlet-name>
+        <url-pattern>/logcontex</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
