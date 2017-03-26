@@ -1,3 +1,36 @@
+//log-in verfication with jsp
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>log in</title>
+    </head>
+     <body>
+    <form action ="loginjsp.jsp">
+       
+        <font size=6 color="red" >UserName</font>
+        <input type="text"  name="username" value="" required="" ><br><br>
+        <font size=6 color="red" >Password</font>
+        <input type="password" name="password" value="" required="" ><br><br>
+         
+            <font size=6 color="red" >favorite color</font>    
+            <select name="combo">
+              <option value="blue" style="background:blue">blue</option>
+              <option value="red" style="background:red">red</option>
+              <option value="pink" style="background:pink">pink</option>
+              <option value="purple" style="background:purple">purple</option>
+            </select><br/><br/>
+             <input type="submit"  value="login">
+               </form>
+    </body>
+    
+    
+</ht
+
+
+
+//login.jsp
+
 <%-- 
     Document   : loginjsp
     Created on : Mar 22, 2017, 9:41:54 AM
