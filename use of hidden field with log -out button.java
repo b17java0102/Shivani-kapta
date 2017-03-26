@@ -1,4 +1,34 @@
-//use of hidden field with butten
+//use of hidden field with button
+
+//loginform.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>log in</title>
+    </head>
+     <body>
+    <form action ="loginservlet">
+       
+        <font size=6 color="red" >UserName</font>
+        <input type="text"  name="username" value="" required="" ><br><br>
+        <font size=6 color="red" >Password</font>
+        <input type="password" name="password" value="" required="" ><br><br>
+         
+            <font size=6 color="red" >favorite color</font>    
+            <select name="combo">
+              <option value="blue" style="background:blue">blue</option>
+              <option value="red" style="background:red">red</option>
+              <option value="pink" style="background:pink">pink</option>
+              <option value="purple" style="background:purple">purple</option>
+            </select><br/><br/>
+             <input type="submit"  value="login"            </form>
+    </body>
+    
+    
+</html
+
+//loginservlet
+
 package pac1;
 
 import java.io.IOException;
@@ -15,10 +45,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author admin
- */
+
 public class loginservlet extends HttpServlet {
 
    
@@ -75,53 +102,141 @@ while(rs.next())//processing the result
                  out.println(e);
                  }
     
-         //rd.include(request,response);
-         //rd.forward(request,response);
-        // response.sendRedirect("checkservlet1");
                  } 
                 
                 
-                
-        
-    
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+            
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
+
+}
+
+
+
+//homepage.jsp
+<%-- 
+    Document   : homepage
+    Created on : Mar 22, 2017, 1:43:46 PM
+    Author     : admin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%
+            
+  
+        
+          String u=request.getParameter("username");
+           String p=request.getParameter("password");
+           HttpSession ses1=request.getSession(false);
+           if(ses1!=null && ses1.getAttribute("id").equals(u) &&ses1.getAttribute("ps").equals(p))
+           {
+            u=(String)ses1.getAttribute("id");}
+           else
+           {
+           out.println("invalid user");}%>
+           
+           <form action="logout1">
+               <input type="hidden" name="u" value="<%=u%>">
+               <input type="submit" value="logout">
+               
+                          
+           </form>
+           
+                    
+    </body>
+</html>
+%>
+//logout1 servlet
+
+package pac1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+public class logout1 extends HttpServlet {
+
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        
+        
+        
+        PrintWriter out = response.getWriter(); 
+     try
+        {
+            
+            
+             HttpSession ses1=request.getSession(true);
+            
+            String s=request.getParameter("u");
+             
+        
+    
+           if(s!=null)
+           {
+             out.println(s);
+           }
+          s=null;
+           
+             response.sendRedirect("loginform.html");
+             
+           
+        }
+        
+           catch(Exception e)
+           {
+                   out.println(e);
+                   }
+    }
+ 
+  
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+   
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+   
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
 
 }
