@@ -1,8 +1,4 @@
-
-
- 
-
-
+//jdbc connection with preparedStatement  
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Connection;
