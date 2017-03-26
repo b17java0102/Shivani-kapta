@@ -1,4 +1,4 @@
-
+//Http session through servlet.
 package pak1;
 
 import java.io.IOException;
@@ -77,28 +77,93 @@ while(rs.next())//processing the result
                  }
     
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+   
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+   
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+
+}
+
+
+//checkservlet 
+package pak1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class checkservlet1 extends HttpServlet {
+
+   
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+       PrintWriter out = response.getWriter();
+          try
+        
+        {
+           String u=request.getParameter("user");
+           
+           String p=request.getParameter("pwd");
+           
+           String s=request.getParameter("combo");
+           
+           
+           HttpSession ses1=request.getSession(false);
+           
+           
+           
+           if(ses1!=null && ses1.getAttribute("id").equals(u) &&ses1.getAttribute("ps").equals(p))
+           {
+              // String s1=(String)ses1.getAttribute("col");
+             //  out.println("username=" +ses1.getAttribute("id"));
+               out.println("user_name="+u);
+               out.println("fav_color="+s);
+               
+               out.println("<html>");
+                out.println("<body bgcolor="+s+">");
+                 out.println("</body>");
+                  out.println("</html>)");
+           }
+           else
+           {
+               out.println("invalid user");
+           }
+        }
+          catch(Exception e)
+          {
+               out.println(e);
+               
+          }
+    }
+
+   
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+     IOException if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -106,14 +171,10 @@ while(rs.next())//processing the result
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
